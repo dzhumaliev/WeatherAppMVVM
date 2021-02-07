@@ -7,8 +7,8 @@ import com.example.weatherapp.repository.MainRepository
 
 class ForecastViewModel : ViewModel() {
 
-    fun getForecastWeatherData(cityText: String): LiveData<MainWeatherModel> {
-        return MainRepository.fetchForecastWeatherData(cityText)
+    fun getForecastWeatherData(cityText: String,lang: String): LiveData<MainWeatherModel> {
+        return MainRepository.fetchForecastWeatherData(cityText, lang)
     }
 
 }

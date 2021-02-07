@@ -9,7 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.R
@@ -25,11 +25,9 @@ open class MainActivity : AppCompatActivity() {
 
     private var viewModel: MainViewModel? = null
     lateinit var animFadeIn: Animation
-    val languages = arrayOf("Eng", "Ru", "Kgz")
-    val engLang = "Eng"
-    val ruLang = "Ru"
-    val kgLang = "Kgz"
+    val languages = arrayOf("Eng", "Ru")
     var currLang: kotlin.String = "Eng"
+    private var deskId2: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +35,9 @@ open class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         search_btn.setOnClickListener {
             fetchWeather()
+
         }
+
 
         if (spinner_tv != null) {
             val adapter = ArrayAdapter(
@@ -52,23 +52,33 @@ open class MainActivity : AppCompatActivity() {
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
 
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                    Toast.makeText(
-                            this@MainActivity,
-                    "" + languages[position], Toast.LENGTH_SHORT
-                    ).show()
-
+                override fun onItemSelected(
+                    p0: AdapterView<*>?,
+                    p1: View?,
+                    position: Int,
+                    p3: Long
+                ) {
                     currLang = languages[position]
 
-                    if (currLang == "Eng"){
+                    if (currLang == "Eng") {
                         lang_image.setImageResource(R.drawable.eng)
+                        text_wind.text = "Wind"
+                        text_humidity.text = "Humidity"
+                        text_pressure.text = "Pressure"
+                        text_temp_min.text = "Temp min"
+                        text_temp_max.text = "Temp max"
+                        btn_forecast.text = "16 days"
+                        search_btn.text = "Search"
                     }
-                    if (currLang == "Ru"){
+                    if (currLang == "Ru") {
                         lang_image.setImageResource(R.drawable.rus)
-                    }
-                    if (currLang == "Kgz"){
-
-                        lang_image.setImageResource(R.drawable.kg)
+                        text_wind.text = "Ветер"
+                        text_humidity.text = "Влажность"
+                        text_pressure.text = "Давление"
+                        text_temp_min.text = "Мин темпер"
+                        text_temp_max.text = "Макс темпер"
+                        btn_forecast.text = "16 дней"
+                        search_btn.text = "Поиск"
                     }
                 }
             }
@@ -94,7 +104,7 @@ open class MainActivity : AppCompatActivity() {
         btn_forecast.setOnClickListener {
             val intent = Intent(this@MainActivity, ForecastActivity::class.java)
             intent.putExtra("city", city.text.toString())
-            intent.putExtra("lang", languages)
+            intent.putExtra("lang", currLang)
             val sharedView: View = btn_forecast
             val transitionName = getString(R.string.btn_forecast_text)
             val transitionActivityOptions =
@@ -109,15 +119,18 @@ open class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun getData(data: CurrentWeatherEntity?) {
-
         animFadeIn = AnimationUtils.loadAnimation(this, R.anim.anim)
+
+        val descText: kotlin.String = data?.weather?.get(0)?.description.toString()
+        val descId: Int? = data?.weather?.get(0)?.id
+        deskId2 = descId
         val temp = data?.main!!.temp.roundToInt()
         textCelsius.text = temp.toString() + "º"
         val tempMin = data.main?.temp_min?.roundToInt()
         tv_temp_min.text = tempMin.toString() + "º"
         val tempMax = data.main?.temp_max?.roundToInt()
         tv_temp_max.text = tempMax.toString() + "º"
-        textDesc.text = String.valueOf(data.weather?.get(0)?.description)
+        textDesc.text = descText
         tv_wind.text = String.valueOf(data.wind?.speed) + " m/s"
         tv_humidity.text = String.valueOf(data.main?.humidity) + " %"
         tv_pressure.text = String.valueOf(data.main?.pressure) + " hPa"

@@ -6,22 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image5"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    >
 
-    <TextView
-        android:id="@+id/textDesc"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/fresca"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sunny day walk" />
+<!--    <include-->
+<!--        android:id="toolbarId"-->
+<!--        layout="@layout/toolbar"/>-->
 
     <ImageView
         android:id="@+id/lang_image"
@@ -31,6 +21,23 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintRight_toLeftOf="@id/spinner_tv"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textDesc"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/fresca"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:text="Sunny day walk" />
 
     <Spinner
         android:id="@+id/spinner_tv"
@@ -45,15 +52,16 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imageView"
-        android:layout_width="279dp"
-        android:layout_height="315dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36"
         app:lottie_autoPlay="true"
         app:lottie_loop="true" />
+
+
 
     <Button
         android:id="@+id/search_btn"
@@ -64,7 +72,7 @@
         android:background="@drawable/mybutton"
         android:text="Search"
         app:layout_constraintLeft_toRightOf="@id/city"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_scroll" />
+        app:layout_constraintTop_toBottomOf="@id/textDesc" />
 
 
     <EditText
@@ -76,205 +84,253 @@
         android:gravity="center"
         android:hint="City"
         android:inputType="text"
+        android:maxLines="2"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_scroll" />
+        app:layout_constraintTop_toBottomOf="@id/textDesc" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontal_scroll"
-        android:layout_width="wrap_content"
-        android:layout_height="130dp"
-        android:layout_marginBottom="90dp"
-        android:fillViewport="true"
-        android:measureAllChildren="false"
-        android:scrollbars="none"
+
+    <TextView
+        android:id="@+id/textCelsius"
+        android:layout_width="122dp"
+        android:layout_height="147dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="10dp"
+        android:textSize="100sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textDesc"
+
+        tools:text="0°" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="135dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/first_card_view"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="7dp">
+
+        <TextView
+            android:id="@+id/text_wind"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/fresca"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
 
+        <TextView
+            android:id="@+id/tv_wind"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/fresca"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            tools:text="100" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/second_card_view"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/first_card_view"
+        android:layout_marginStart="10dp"
+        app:layout_constraintRight_toLeftOf="@id/third_card_view"
+        app:cardCornerRadius="7dp">
+
+        <TextView
+            android:id="@+id/text_humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/fresca"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/fresca"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            tools:text="100" />
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/third_card_view"
+            android:layout_width="100dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="7dp"
+            app:layout_constraintLeft_toRightOf="@id/second_card_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textCelsius"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_pressure"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:textColor="@android:color/white"
-                android:textSize="100sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:text="0°" />
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/fresca"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="13sp" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/first_card_view"
-                android:layout_width="100dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                app:cardCornerRadius="7dp">
+            <TextView
+                android:id="@+id/tv_pressure"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/fresca"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                tools:text="100" />
 
-                <TextView
-                    android:id="@+id/text_wind"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:text="Wind" />
-
-                <TextView
-                    android:id="@+id/tv_wind"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="100" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/second_card_view"
-                android:layout_width="100dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                app:cardCornerRadius="7dp">
-
-                <TextView
-                    android:id="@+id/text_humidity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:text="Humidity" />
-
-                <TextView
-                    android:id="@+id/tv_humidity"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="100" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/third_card_view"
-                android:layout_width="100dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                app:cardCornerRadius="7dp">
-
-                <TextView
-                    android:id="@+id/text_pressure"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:text="Pressure" />
-
-                <TextView
-                    android:id="@+id/tv_pressure"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="100" />
-
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/four_card_view"
-                android:layout_width="100dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                app:cardCornerRadius="7dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/four_card_view"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/first_card_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="7dp">
 
-                <TextView
-                    android:id="@+id/text_temp_min"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:text="Temp min" />
+        <TextView
+            android:id="@+id/text_temp_min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/fresca"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_temp_min"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="100" />
+        <TextView
+            android:id="@+id/tv_temp_min"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/fresca"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            tools:text="100" />
 
-            </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/five_card_view"
-                android:layout_width="100dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                app:cardCornerRadius="7dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/five_card_view"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_card_view"
+        app:layout_constraintLeft_toRightOf="@id/four_card_view"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintRight_toLeftOf="@id/six_card_view"
+        app:cardCornerRadius="7dp">
 
-                <TextView
-                    android:id="@+id/text_temp_max"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:text="Temp max" />
+        <TextView
+            android:id="@+id/text_temp_max"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/fresca"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_temp_max"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/fresca"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="100" />
+        <TextView
+            android:id="@+id/tv_temp_max"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/fresca"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            tools:text="100" />
 
-            </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </HorizontalScrollView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/six_card_view"
+            android:layout_width="100dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/third_card_view"
+            app:layout_constraintLeft_toRightOf="@id/five_card_view"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:cardCornerRadius="7dp">
+
+            <TextView
+                android:id="@+id/test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/fresca"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_test"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/fresca"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                tools:text="100" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <Button
         android:id="@+id/btn_forecast"
@@ -288,6 +344,29 @@
         app:layout_constraintTop_toBottomOf="@id/spinner_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<HorizontalScrollView-->
+    <!--android:id="@+id/horizontal_scroll"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="130dp"-->
+    <!--android:layout_marginBottom="90dp"-->
+    <!--android:fillViewport="true"-->
+    <!--android:measureAllChildren="false"-->
+    <!--android:scrollbars="none"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintHorizontal_weight="1"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent">-->
+
+    <!--<LinearLayout-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:orientation="horizontal">-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    </HorizontalScrollView>-->
 
 
     <!--    app:lottie_rawRes=""-->

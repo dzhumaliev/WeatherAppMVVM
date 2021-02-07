@@ -19,6 +19,7 @@ interface WeatherApi {
     @GET("forecast/daily")
     fun getForecastWeather(
         @Query("city") cityApi: String,
+        @Query("lang") lang: String,
         @Query("key") keyApi: String
     ): Call<MainWeatherModel>
 }

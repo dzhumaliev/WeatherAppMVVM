@@ -24,14 +24,8 @@ class ForecastActivity : AppCompatActivity() {
 
         val recyclerView =
             findViewById<RecyclerView>(R.id.featured_recycler_view) as FeaturedRecyclerView
-        adapter =
-            ForecastAdapter()
-        val layoutManager =
-            FeatureLinearLayoutManager(
-                this,
-                FeatureLinearLayoutManager.VERTICAL,
-                false
-            )
+        adapter = ForecastAdapter()
+        val layoutManager = FeatureLinearLayoutManager(this, FeatureLinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
@@ -40,7 +34,8 @@ class ForecastActivity : AppCompatActivity() {
 
     private fun fetchForecastWeather() {
         val city = intent.getStringExtra("city")
-        val forecastData = viewModel?.getForecastWeatherData(city.toString())
+        val lang = intent.getStringExtra("lang")
+        val forecastData = viewModel?.getForecastWeatherData(city.toString(),lang)
         forecastData?.observe(this, androidx.lifecycle.Observer<MainWeatherModel> {
             val model: MainWeatherModel? = forecastData.value
             when {

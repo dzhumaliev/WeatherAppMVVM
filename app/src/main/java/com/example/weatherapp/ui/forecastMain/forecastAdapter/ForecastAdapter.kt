@@ -16,9 +16,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view: View = inflater.inflate(R.layout.item_forecast_weather, parent, false)
-        return ForecastViewHolder(
-            view
-        )
+        return ForecastViewHolder(view)
 
     }
 

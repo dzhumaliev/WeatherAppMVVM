@@ -44,11 +44,12 @@ open class MainRepository {
             return data
         }
 
-        fun fetchForecastWeatherData(cityName: String): LiveData<MainWeatherModel> {
+        fun fetchForecastWeatherData(cityName: String, lang: String): LiveData<MainWeatherModel> {
             val data = MutableLiveData<MainWeatherModel>()
             forecastApiServiceBuilder = ForecastRetrofitBuilder().create()
             forecastApiServiceBuilder.getForecastWeather(
                 cityName,
+                lang,
                 WEATHER_FORECAST_KEY
             )
                 .enqueue(object : Callback<MainWeatherModel> {
